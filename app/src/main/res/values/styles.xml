@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="input">
+        <item name="android:layout_width"> match_parent </item>
+        <item name="android:layout_height">60dp</item>
+        <item name="background">@drawable/container</item>
+        <item name="android:layout_margin">30dp</item>
+        <item name="android:ems">10</item>
+        <item name="android:textSize">14sp</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="android:drawablePadding">12dp</item>
+        <item name="android:textColorHint">@color/translucid</item>
+        <item name="android:backgroundTint">@color/translucid</item>
+
+    </style>
+</resources>
