@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "358996245083",
+    "project_id": "projeto-condo",
+    "storage_bucket": "projeto-condo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358996245083:android:8d3de64ebbe10501f01d7e",
+        "android_client_info": {
+          "package_name": "com.example.projetocondominio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358996245083-fsicb063e3oujn8ntiq2rpbl3t6b24v2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQcTJ6fEl3rbWMECr4zdwRPivTmi7EXuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358996245083-fsicb063e3oujn8ntiq2rpbl3t6b24v2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
