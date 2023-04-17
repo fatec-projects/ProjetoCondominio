@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -43,7 +44,7 @@
             android:id="@+id/nome_usuario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jair Messias Bolsonaro"
+            android:text="Fulano"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="20dp"/>
@@ -60,7 +61,7 @@
             android:id="@+id/email_usuario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="E-mail: meupresidente@gmail.com"
+            android:text="E-mail: email@gmail.com"
             android:textSize="14sp"
             android:layout_marginTop="8dp"/>
 
@@ -68,15 +69,15 @@
             android:id="@+id/endereco_usuario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Endereço: Rua  7 de setembro,1984"
+            android:text="Endereço: Rua  11 de setembro,1984"
             android:textSize="14sp"
             android:layout_marginTop="8dp"/>
-        <CalendarView
+        <!--<CalendarView
             android:id="@+id/calendario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/informacoes_usuario"
-            android:dateTextAppearance="@style/CalendarTextStyle"/>
+            android:dateTextAppearance="@style/CalendarTextStyle"/>-->
 
 
     </LinearLayout>
