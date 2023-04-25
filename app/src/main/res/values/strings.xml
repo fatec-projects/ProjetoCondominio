@@ -3,4 +3,10 @@
     <string name="entrar">Entrar</string>
     <string name="text">Texto da página inicial</string>
     <string name="sair">Sair</string>
+    <string name="CopyRt">Todos os Direitos reservados @2023</string>
+    <string name="back">Voltar</string>
+    <string name="title_activity_emergencia">Emergencia</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
