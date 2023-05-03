@@ -7,8 +7,56 @@
     tools:context=".Emergencia"
     android:background="@color/background">
 
+    <LinearLayout
+        android:id="@+id/informacoes_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+    <ImageView
+        android:id="@+id/ambulancia"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/ambulancia"
+        />
 
+    <ImageView
+        android:id="@+id/policia"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/policia"
+        app:layout_constraintStart_toEndOf="@id/ambulancia"
+        />
 
+    <ImageView
+        android:id="@+id/bombeiro"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/bombeiro"
+        />
+
+    <ImageView
+        android:id="@+id/denuncia"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/denuncia"
+        />
+
+    </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_navigation_menu"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
