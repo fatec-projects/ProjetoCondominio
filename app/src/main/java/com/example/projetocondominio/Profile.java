@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,7 +35,14 @@ public class Profile extends AppCompatActivity {
         emailTextView.setText(email);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
-
+        Menu menu = bottomNavigationView.getMenu();
+        if (user != null) {
+                menu.findItem(R.id.action_turnos).setVisible(false);
+                menu.findItem(R.id.action_profiles).setVisible(false);
+                menu.findItem(R.id.action_horario).setVisible(true);
+                menu.findItem(R.id.action_profile).setVisible(true);
+                menu.findItem(R.id.action_emergency).setVisible(true);
+        }
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -58,5 +66,6 @@ public class Profile extends AppCompatActivity {
                 return false;
             }
         });
+
     }
 }

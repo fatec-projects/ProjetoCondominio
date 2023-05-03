@@ -1,5 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_turnos"
+        android:icon="@drawable/turnos"
+        android:title="Turnos" />
+
+    <item
+        android:id="@+id/action_profiles"
+        android:icon="@drawable/profiles"
+        android:title="Usuários" />
 
     <item
         android:id="@+id/action_horario"
