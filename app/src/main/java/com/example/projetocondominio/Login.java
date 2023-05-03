@@ -96,7 +96,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void TelaPrincipal(){
-        Intent intent = new Intent(Login.this,PaginaInicial.class);
+        Intent intent = new Intent(Login.this,Profile.class);
         startActivity(intent);
         finish();
     }
@@ -107,7 +107,7 @@ public class Login extends AppCompatActivity {
         progress_bar = findViewById(R.id.progress_bar);
     }
     public void SignIn(View view) {
-        startActivity(new Intent(Login.this, PaginaInicial.class));
+        startActivity(new Intent(Login.this, Profile.class));
     }
 
 
