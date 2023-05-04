@@ -27,10 +27,10 @@ public class Profiles extends AppCompatActivity {
 
         Menu menu = bottomNavigationView.getMenu();
         if (user != null) {
-            menu.findItem(R.id.action_turnos).setVisible(false);
-            menu.findItem(R.id.action_profiles).setVisible(false);
-            menu.findItem(R.id.action_horario).setVisible(true);
-            menu.findItem(R.id.action_profile).setVisible(true);
+            menu.findItem(R.id.action_turnos).setVisible(true);
+            menu.findItem(R.id.action_profiles).setVisible(true);
+            menu.findItem(R.id.action_horario).setVisible(false);
+            menu.findItem(R.id.action_profile).setVisible(false);
             menu.findItem(R.id.action_emergency).setVisible(true);
         }
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {

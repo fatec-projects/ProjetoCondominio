@@ -49,7 +49,7 @@ public class Profile extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_horario:
                         // Ação para o item "Home"
-                        Intent horario = new Intent(Profile.this,PaginaInicial.class);
+                        Intent horario = new Intent(Profile.this,Horario.class);
                         startActivity(horario);
                         return true;
                     case R.id.action_profile:
