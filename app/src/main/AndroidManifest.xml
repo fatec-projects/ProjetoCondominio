@@ -32,12 +32,6 @@
             android:name=".Profile"
             android:exported="false" />
         <activity
-            android:name=".Emergencia"
-            android:exported="false" />
-        <activity
-            android:name=".PaginaInicial"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
