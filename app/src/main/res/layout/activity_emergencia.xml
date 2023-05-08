@@ -4,10 +4,142 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Emergencia"
-    android:background="@color/background">
+    tools:context=".Emergencia">
+
+    <LinearLayout
+        android:id="@+id/informacoes_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation_view"
+        >
+    <LinearLayout
+        android:id="@+id/ambulancia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start|center"
+
+        >
+
+    <ImageView
+        android:id="@+id/ambulancia_img"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/ambulancia"
+        />
 
 
+        <TextView
+            android:id="@+id/ambulancia_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="Ambulância"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            style="@style/text_content"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/policia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start|center"
+        >
+
+        <ImageView
+        android:id="@+id/policia_img"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/policia"
+        app:layout_constraintStart_toEndOf="@id/ambulancia"
+        />
+
+        <TextView
+            android:id="@+id/policia_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="Polícia Militar"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            style="@style/text_content"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bombeiro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start|center"
+        >
+
+        <ImageView
+        android:id="@+id/bombeiro_img"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/bombeiro"
+        />
+
+
+        <TextView
+            android:id="@+id/bombeiro_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="Bombeiros"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            style="@style/text_content"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/denuncia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start|center"
+        >
+    <ImageView
+        android:id="@+id/denuncia_img"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/denuncia"
+        />
+
+        <TextView
+            android:id="@+id/denuncia_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="Disque Denúnica"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            style="@style/text_content"
+            />
+    </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_navigation_menu"
+        />
 
 
 

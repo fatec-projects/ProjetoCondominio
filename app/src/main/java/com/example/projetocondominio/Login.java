@@ -67,7 +67,7 @@ public class Login extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            TelaPrincipal();
+                            TelaPrincipal(email);
                         }
                     }, 3000);
                 }else{
@@ -91,14 +91,20 @@ public class Login extends AppCompatActivity {
         super.onStart();
         FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
         if (usuarioAtual != null){
-            TelaPrincipal();
+            TelaPrincipal(usuarioAtual.getEmail());
         }
     }
 
-    private void TelaPrincipal(){
-        Intent intent = new Intent(Login.this,PaginaInicial.class);
-        startActivity(intent);
-        finish();
+    private void TelaPrincipal(String email){
+        if(email.equals("test@email.com")){
+            Intent intent = new Intent(Login.this, Turnos.class);
+            startActivity(intent);
+            finish();
+        }else {
+            Intent intent = new Intent(Login.this, Horario.class);
+            startActivity(intent);
+            finish();
+        }
     }
     private void StartComponents(){
         login_email = findViewById(R.id.login_email);
@@ -107,7 +113,7 @@ public class Login extends AppCompatActivity {
         progress_bar = findViewById(R.id.progress_bar);
     }
     public void SignIn(View view) {
-        startActivity(new Intent(Login.this, PaginaInicial.class));
+        startActivity(new Intent(Login.this, Profile.class));
     }
 
 
