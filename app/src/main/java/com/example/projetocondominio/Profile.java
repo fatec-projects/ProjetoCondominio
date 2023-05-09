@@ -42,6 +42,7 @@ public class Profile extends AppCompatActivity {
                 menu.findItem(R.id.action_horario).setVisible(true);
                 menu.findItem(R.id.action_profile).setVisible(true);
                 menu.findItem(R.id.action_emergency).setVisible(true);
+                menu.findItem(R.id.action_logout).setVisible(true);
         }
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
@@ -62,10 +63,19 @@ public class Profile extends AppCompatActivity {
                         Intent emergencia = new Intent(Profile.this,Emergencia.class);
                         startActivity(emergencia);
                         return true;
+                    case R.id.action_logout:
+                        return logout();
                 }
                 return false;
             }
         });
+    }
 
+    private boolean logout() {
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.signOut();
+        Intent intent = new Intent(Profile.this, Login.class);
+        startActivity(intent);
+        finish();
     }
 }

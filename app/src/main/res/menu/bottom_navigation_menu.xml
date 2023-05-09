@@ -25,4 +25,9 @@
         android:icon="@drawable/emergency"
         android:title="Emergência" />
 
+    <item
+        android:id="@+id/action_logout"
+        android:icon="@drawable/logout"
+        android:title="Logout" />
+
 </menu>
