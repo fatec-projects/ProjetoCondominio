@@ -37,12 +37,12 @@ public class Turnos extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.action_horario:
+                    case R.id.action_turnos:
                         // Ação para o item "Home"
                         Intent horario = new Intent(Turnos.this,Turnos.class);
                         startActivity(horario);
                         return true;
-                    case R.id.action_profile:
+                    case R.id.action_profiles:
                         // Ação para o item "Search"
                         Intent profile = new Intent(Turnos.this,Profiles.class);
                         startActivity(profile);
