@@ -30,7 +30,7 @@ public class Emergencia extends AppCompatActivity {
         setContentView(R.layout.activity_emergencia);;
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
-
+        View btnSingout1 = findViewById(R.id.singnout_button1);
         Menu menu = bottomNavigationView.getMenu();
         if (user != null) {
             if (email.equals("test@email.com")) {
@@ -38,6 +38,7 @@ public class Emergencia extends AppCompatActivity {
                 menu.findItem(R.id.action_profiles).setVisible(true);
                 menu.findItem(R.id.action_horario).setVisible(false);
                 menu.findItem(R.id.action_profile).setVisible(false);
+                btnSingout1.findViewById(R.id.singnout_button1);
 
             } else {
                 menu.findItem(R.id.action_turnos).setVisible(false);
@@ -125,5 +126,19 @@ public class Emergencia extends AppCompatActivity {
             }
         });
 
+        btnSingout1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                singnOutUser();
+            }
+        });
+
+    }
+    private void singnOutUser() {
+        Intent mainActivity = new Intent(Emergencia.this, Login.class);
+        mainActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(mainActivity);
+        finish();
     }
 }
