@@ -2,11 +2,14 @@ package com.example.projetocondominio;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,12 +29,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
 
 public class Profiles extends AppCompatActivity {
-    private EditText adc_email, adc_pswd;
-
     private Button profiles_button;
     private BottomNavigationView bottomNavigationView;
 
@@ -89,6 +89,7 @@ public class Profiles extends AppCompatActivity {
             }
         });
 
+
     }
 
     public void onButtonShowPopupWindowClick(View view) {
@@ -108,10 +109,48 @@ public class Profiles extends AppCompatActivity {
         // which view you pass in doesn't matter, it is only used for the window tolken
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
-        StartComponents(view);
+        profiles_button = popupView.findViewById(R.id.profiles_button);
+        EditText adc_email = popupView.findViewById(R.id.adc_email);
+        EditText adc_pswd = popupView.findViewById(R.id.adc_pswd);
 
+        profiles_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = adc_email.getText().toString();
+                String password = adc_pswd.getText().toString();
 
+                if(email.isEmpty() || password.isEmpty()){
+                    Snackbar snackbar = Snackbar.make(view,"Preencha todos os campos!",Snackbar.LENGTH_SHORT);
+                    snackbar.setBackgroundTint(Color.WHITE);
+                    snackbar.setTextColor(Color.BLACK);
+                    snackbar.show();
+                }else{
+                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
+                            if( task.isSuccessful()){
+                                Snackbar snackbar = Snackbar.make(view,"Usuário criado com sucesso!",Snackbar.LENGTH_SHORT);
+                                snackbar.setBackgroundTint(Color.WHITE);
+                                snackbar.setTextColor(Color.BLACK);
+                                snackbar.show();
+                            }else{
+                                String error;
+                                try {
+                                    throw task.getException();
+                                }catch (Exception e){
+                                    error = "Erro ao criar usuário";
+                                }
+                                Snackbar snackbar = Snackbar.make(view,error,Snackbar.LENGTH_SHORT);
+                                snackbar.setBackgroundTint(Color.WHITE);
+                                snackbar.setTextColor(Color.BLACK);
+                                snackbar.show();
+                            }
+                        }
+                    });
+                }
+                }
+        });
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -120,43 +159,5 @@ public class Profiles extends AppCompatActivity {
                 return true;
             }
         });
-    }
-
-    public void registerNewUser( View view){
-        String email = adc_email.getText().toString();
-        String password = adc_pswd.getText().toString();
-
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
-                {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            finish();
-                        } else {
-                            String error;
-                            try {
-                                throw task.getException();
-                            }catch (Exception e){
-                                error = "Erro ao criar usuário";
-                            }
-                            Snackbar snackbar = Snackbar.make(view,error,Snackbar.LENGTH_SHORT);
-                            snackbar.setBackgroundTint(Color.WHITE);
-                            snackbar.setTextColor(Color.BLACK);
-                            snackbar.show();// Falha ao criar usuário
-                            // Trate a exceção
-                        }
-                    }
-                });
-    }
-
-    private void StartComponents(View view) {
-        adc_email = findViewById(R.id.adc_email);
-        adc_pswd = findViewById(R.id.adc_pswd);
-        profiles_button = findViewById(R.id.profiles_button);
-
-    }
-    public void CreateUser(View view) {
-        startActivity(new Intent(Profiles.this, Profiles.class));
     }
 }
