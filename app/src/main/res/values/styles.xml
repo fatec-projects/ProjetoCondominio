@@ -11,8 +11,9 @@
         <item name="android:textSize">14sp</item>
         <item name="layout_constraintStart_toStartOf">parent</item>
         <item name="android:drawablePadding">12dp</item>
-<!--        <item name="android:textColorHint">@color/translucid</item>-->
-<!--        <item name="android:backgroundTint">@color/translucid</item>-->
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/buttons</item>
+        <item name="android:backgroundTint">@color/buttons</item>
     </style>
 
     <style name="button">
