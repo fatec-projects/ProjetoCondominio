@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Profile extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
+    Button btnSingout;
 
 
     @Override
@@ -26,6 +29,8 @@ public class Profile extends AppCompatActivity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         String email = user.getEmail();
+        Button btnSingout;
+
 
 
         super.onCreate(savedInstanceState);
@@ -43,6 +48,16 @@ public class Profile extends AppCompatActivity {
                 menu.findItem(R.id.action_profile).setVisible(true);
                 menu.findItem(R.id.action_emergency).setVisible(true);
         }
+
+        btnSingout = findViewById(R.id.sigoutn_button);
+
+        btnSingout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                singnOutUser();
+            }
+        });
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -67,5 +82,12 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void singnOutUser() {
+        Intent mainActivity = new Intent(Profile.this, Login.class);
+        mainActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(mainActivity);
+        finish();
     }
 }
