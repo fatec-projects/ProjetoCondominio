@@ -42,11 +42,19 @@ public class Profile extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         Menu menu = bottomNavigationView.getMenu();
         if (user != null) {
+            if (email.equals("test@email.com")) {
+                menu.findItem(R.id.action_turnos).setVisible(true);
+                menu.findItem(R.id.action_profiles).setVisible(true);
+                menu.findItem(R.id.action_horario).setVisible(false);
+
+            } else {
                 menu.findItem(R.id.action_turnos).setVisible(false);
                 menu.findItem(R.id.action_profiles).setVisible(false);
                 menu.findItem(R.id.action_horario).setVisible(true);
-                menu.findItem(R.id.action_profile).setVisible(true);
-                menu.findItem(R.id.action_emergency).setVisible(true);
+
+            }
+            menu.findItem(R.id.action_profile).setVisible(true);
+            menu.findItem(R.id.action_emergency).setVisible(true);
         }
 
         btnSingout = findViewById(R.id.sigoutn_button);
@@ -68,12 +76,22 @@ public class Profile extends AppCompatActivity {
                         startActivity(horario);
                         return true;
                     case R.id.action_profile:
-                        // Ação para o item "Search"
+                        // Ação para o item "Profile"
                         Intent profile = new Intent(Profile.this,Profile.class);
                         startActivity(profile);
                         return true;
+                    case R.id.action_turnos:
+                        // Ação para o item "Home"
+                        Intent turnos = new Intent(Profile.this,Turnos.class);
+                        startActivity(turnos);
+                        return true;
+                    case R.id.action_profiles:
+                        // Ação para o item "Home"
+                        Intent profiles = new Intent(Profile.this,Profiles.class);
+                        startActivity(profiles);
+                        return true;
                     case R.id.action_emergency:
-                        // Ação para o item "Profile"
+                        // Ação para o item "Emergencia"
                         Intent emergencia = new Intent(Profile.this,Emergencia.class);
                         startActivity(emergencia);
                         return true;

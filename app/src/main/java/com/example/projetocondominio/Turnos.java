@@ -30,7 +30,7 @@ public class Turnos extends AppCompatActivity {
             menu.findItem(R.id.action_turnos).setVisible(true);
             menu.findItem(R.id.action_profiles).setVisible(true);
             menu.findItem(R.id.action_horario).setVisible(false);
-            menu.findItem(R.id.action_profile).setVisible(false);
+            menu.findItem(R.id.action_profile).setVisible(true);
             menu.findItem(R.id.action_emergency).setVisible(true);
         }
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
@@ -44,7 +44,12 @@ public class Turnos extends AppCompatActivity {
                         return true;
                     case R.id.action_profiles:
                         // Ação para o item "Search"
-                        Intent profile = new Intent(Turnos.this,Profiles.class);
+                        Intent profiles = new Intent(Turnos.this,Profiles.class);
+                        startActivity(profiles);
+                        return true;
+                    case R.id.action_profile:
+                        // Ação para o item "Profile"
+                        Intent profile = new Intent(Turnos.this,Profile.class);
                         startActivity(profile);
                         return true;
                     case R.id.action_emergency:

@@ -130,18 +130,7 @@
             style="@style/text_content"
             />
     </LinearLayout>
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/singnout_button1"
-            style="@style/button"
-            android:layout_width="153dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/button"
-            android:onClick="SignIn"
-            android:text="@string/sair"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/denuncia_txt" />
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
