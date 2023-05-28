@@ -11,6 +11,15 @@
         android:gravity="start"
         android:orientation="vertical"
         >
+
+        <EditText
+            android:id="@+id/adc_nome"
+            style="@style/input"
+            android:hint="Nome..."
+            android:drawableStart="@drawable/nome"
+            android:inputType="text"
+            />
+
         <EditText
             android:id="@+id/adc_email"
             style="@style/input"

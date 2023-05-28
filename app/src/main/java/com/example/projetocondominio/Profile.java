@@ -18,6 +18,11 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Profile extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
@@ -29,15 +34,41 @@ public class Profile extends AppCompatActivity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         String email = user.getEmail();
+        String id = user.getUid();
         Button btnSingout;
-
+        DatabaseReference user_nome = FirebaseDatabase.getInstance().getReference("users");
+        user_nome = user_nome.child(id).child("name");
 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        user_nome.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Retrieve the value from the dataSnapshot
+                String name = dataSnapshot.getValue(String.class);
+
+                // Do something with the retrieved user name
+                if (name != null) {
+                    TextView nameTextView = findViewById(R.id.nome_usuario);
+                    nameTextView.setText(name);
+                } else {
+                    TextView nameTextView = findViewById(R.id.nome_usuario);
+                    nameTextView.setText("Fulano");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
         TextView emailTextView = findViewById(R.id.email_usuario);
         emailTextView.setText(email);
+
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         Menu menu = bottomNavigationView.getMenu();
