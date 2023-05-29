@@ -61,6 +61,9 @@ public class Profiles extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
 
         Menu menu = bottomNavigationView.getMenu();
+
+        menu.findItem(R.id.action_profiles).setChecked(true);
+
         if (user != null) {
             menu.findItem(R.id.action_turnos).setVisible(true);
             menu.findItem(R.id.action_profiles).setVisible(true);
@@ -163,7 +166,7 @@ public class Profiles extends AppCompatActivity {
                                             }
                                         });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                FirebaseAuth.getInstance().signInWithEmailAndPassword("test@email.com", "000000");
+                                FirebaseAuth.getInstance().signInWithEmailAndPassword("admin@email.com", "000000");
                                 Snackbar snackbar = Snackbar.make(view,"Usuário criado com sucesso!",Snackbar.LENGTH_SHORT);
                                 snackbar.setBackgroundTint(Color.WHITE);
                                 snackbar.setTextColor(Color.BLACK);

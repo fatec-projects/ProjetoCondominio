@@ -26,6 +26,9 @@ public class Turnos extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
 
         Menu menu = bottomNavigationView.getMenu();
+
+        menu.findItem(R.id.action_turnos).setChecked(true);
+
         if (user != null) {
             menu.findItem(R.id.action_turnos).setVisible(true);
             menu.findItem(R.id.action_profiles).setVisible(true);

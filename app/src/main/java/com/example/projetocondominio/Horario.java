@@ -27,6 +27,9 @@ public class Horario extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
 
         Menu menu = bottomNavigationView.getMenu();
+
+        menu.findItem(R.id.action_horario).setChecked(true);
+
         if (user != null) {
             menu.findItem(R.id.action_turnos).setVisible(false);
             menu.findItem(R.id.action_profiles).setVisible(false);
