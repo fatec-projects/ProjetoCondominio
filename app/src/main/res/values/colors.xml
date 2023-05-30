@@ -12,7 +12,7 @@
     <color name="title">#FF3700B3</color>
     <color name="info">#FF03DAC5</color>
     <color name="background">#E2EFF5</color>
-    <color name="translucid">#000000</color>
+    <color name="translucid">#f2f0f7</color>
     <color name="bottom_navigation_background">#4D2D8D</color>
 
 </resources>

@@ -45,6 +45,7 @@
             android:text="Ambulância"
             android:textSize="28sp"
             android:textStyle="bold"
+            android:textColor="@color/teal_700"
             style="@style/text_content"
             />
     </LinearLayout>
@@ -71,6 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
             android:text="Polícia Militar"
+            android:textColor="@color/teal_700"
             android:textSize="28sp"
             android:textStyle="bold"
             style="@style/text_content"
@@ -98,6 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
+            android:textColor="@color/teal_700"
             android:text="Bombeiros"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -124,6 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
+            android:textColor="@color/teal_700"
             android:text="Disque Denúnica"
             android:textSize="28sp"
             android:textStyle="bold"
