@@ -27,13 +27,17 @@ public class Emergencia extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emergencia);;
+        setContentView(R.layout.activity_emergencia);
+
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
 
         Menu menu = bottomNavigationView.getMenu();
+
+        menu.findItem(R.id.action_emergency).setChecked(true);
+
         if (user != null) {
-            if (email.equals("test@email.com")) {
+            if (email.equals("admin@email.com")) {
                 menu.findItem(R.id.action_turnos).setVisible(true);
                 menu.findItem(R.id.action_profiles).setVisible(true);
                 menu.findItem(R.id.action_horario).setVisible(false);

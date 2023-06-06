@@ -96,7 +96,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void TelaPrincipal(String email){
-        if(email.equals("test@email.com")){
+        if(email.equals("admin@email.com")){
             Intent intent = new Intent(Login.this, Turnos.class);
             startActivity(intent);
             finish();

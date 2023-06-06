@@ -7,10 +7,19 @@
         android:id="@+id/popup_window"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/translucid"
         android:gravity="start"
         android:orientation="vertical"
         >
+
+        <EditText
+            android:id="@+id/adc_nome"
+            style="@style/input"
+            android:hint="Nome..."
+            android:drawableStart="@drawable/nome"
+            android:inputType="text"
+            />
+
         <EditText
             android:id="@+id/adc_email"
             style="@style/input"

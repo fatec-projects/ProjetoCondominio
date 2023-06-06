@@ -29,20 +29,62 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 public class Profiles extends AppCompatActivity {
+    RecyclerView recyclerView;
+    ArrayList<User> list;
+    DatabaseReference databaseReference;
+    MyAdapter adapter;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(Profiles.this, Profiles.class));
+        finish();
+    }
+
     private Button profiles_button;
     private BottomNavigationView bottomNavigationView;
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
+    private FirebaseUser user = mAuth.getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        FirebaseUser user = mAuth.getCurrentUser();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profiles);
+
+        recyclerView = findViewById(R.id.recycle_view);
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        list = new ArrayList<>();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new MyAdapter(this, list);
+        recyclerView.setAdapter(adapter);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    User user = dataSnapshot.getValue((User.class));
+                    list.add(user);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 
         ImageButton btnPopup = findViewById(R.id.btn_popup);
 
@@ -58,6 +100,9 @@ public class Profiles extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
 
         Menu menu = bottomNavigationView.getMenu();
+
+        menu.findItem(R.id.action_profiles).setChecked(true);
+
         if (user != null) {
             menu.findItem(R.id.action_turnos).setVisible(true);
             menu.findItem(R.id.action_profiles).setVisible(true);
@@ -115,16 +160,18 @@ public class Profiles extends AppCompatActivity {
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
         profiles_button = popupView.findViewById(R.id.profiles_button);
+        EditText adc_nome = popupView.findViewById(R.id.adc_nome);
         EditText adc_email = popupView.findViewById(R.id.adc_email);
         EditText adc_pswd = popupView.findViewById(R.id.adc_pswd);
 
         profiles_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String nome = adc_nome.getText().toString();
                 String email = adc_email.getText().toString();
                 String password = adc_pswd.getText().toString();
 
-                if(email.isEmpty() || password.isEmpty()){
+                if(nome.isEmpty() || email.isEmpty() || password.isEmpty()){
                     Snackbar snackbar = Snackbar.make(view,"Preencha todos os campos!",Snackbar.LENGTH_SHORT);
                     snackbar.setBackgroundTint(Color.WHITE);
                     snackbar.setTextColor(Color.BLACK);
@@ -135,10 +182,37 @@ public class Profiles extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if( task.isSuccessful()){
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                FirebaseUser new_user = task.getResult().getUser();
+                                String userId = new_user.getUid();
+
+                                // Create a User object with name and default profile photo URL
+                                User newUser = new User(nome,"https://cdn-icons-png.flaticon.com/512/3135/3135715.png", email);
+
+                                // Save the User object to the Realtime Database under the user's ID
+                                DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+                                usersRef.child(userId).setValue(newUser)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {} else {
+                                                    // Failed to save user data
+                                                    Snackbar snackbar = Snackbar.make(view,"Error saving user data to the database.",Snackbar.LENGTH_SHORT);
+                                                    snackbar.setBackgroundTint(Color.WHITE);
+                                                    snackbar.setTextColor(Color.BLACK);
+                                                    snackbar.show();
+                                                }
+                                            }
+                                        });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                FirebaseAuth.getInstance().signInWithEmailAndPassword("admin@email.com", "000000");
                                 Snackbar snackbar = Snackbar.make(view,"Usuário criado com sucesso!",Snackbar.LENGTH_SHORT);
                                 snackbar.setBackgroundTint(Color.WHITE);
                                 snackbar.setTextColor(Color.BLACK);
                                 snackbar.show();
+                                Intent intent = new Intent(Profiles.this, Profiles.class);
+                                startActivity(intent);
+                                finish();
                             }else{
                                 String error;
                                 try {
